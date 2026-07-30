@@ -6,7 +6,7 @@ metadata:
 data:
   environment: production
   debug: "false"
-  allowed-origins: "https://helixqa.tech"
+  allowed-origins: ["https://helixqa.tech","https://www.helixqa.tech"]
   app-name: HelixQA
   ai-default-provider: gemini
   access-token-expire-minutes: "1440"
