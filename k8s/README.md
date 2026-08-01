@@ -3,13 +3,15 @@
 ## Files Created
 
 All Kubernetes manifests are in `k8s/`:
-- `namespace.yaml` - Namespace definition
-- `secrets.yaml` - All sensitive configuration (DB, Redis, API keys)
-- `configmap.yaml` - Non-sensitive configuration
-- `deployment-api.yaml` - FastAPI deployment (3 replicas)
-- `deployment-celery.yaml` - Celery worker deployment (2 replicas)
-- `service.yaml` - ClusterIP service for API
-- `ingress.yaml` - Ingress with TLS (Let's Encrypt)
+- `00-namespace.yaml` & `00-serviceaccount.yaml` - Namespace and RBAC definition
+- `01-secrets.yaml` - All sensitive configuration (DB, Redis, API keys)
+- `02-configmap.yaml` - Non-sensitive configuration
+- `03-deployment-api.yaml` - FastAPI deployment (3 replicas)
+- `04-deployment-celery.yaml` - Celery worker deployment (2 replicas)
+- `05-service.yaml` - ClusterIP service for API
+- `06-ingress.yaml` - Ingress with TLS (Let's Encrypt)
+
+For a step-by-step walk-through on setting up and deploying these resources on Azure AKS for free, please refer to [AZURE_FREE_DEPLOYMENT.md](file:///home/meru/Desktop/HelixQA/backend/docs/AZURE_FREE_DEPLOYMENT.md).
 
 ## Before You Deploy
 
