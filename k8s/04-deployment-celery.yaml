@@ -4,7 +4,7 @@ metadata:
   name: helixqa-celery-worker
   namespace: helixqa
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: helixqa-celery-worker
@@ -18,8 +18,9 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
       containers:
-      - name: worker
-        image: docker.io/neuralnexu/helixqa-api:v1.0.0
+      - name: celery-worker
+        image: helixqa-api:v1.0.0
+        imagePullPolicy: Never
         env:
         - name: DATABASE_URL
           valueFrom:
@@ -68,21 +69,27 @@ spec:
               key: ai-default-provider
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "64Mi"
+            cpu: "100m"
           limits:
-            memory: "1Gi"
-            cpu: "1000m"
+            memory: "256Mi"
+            cpu: "500m"
         command:
           - celery
           - -A
           - app.tasks.celery_app
           - worker
           - --loglevel=info
-          - --concurrency=4
+          - --concurrency=2
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
             drop:
               - ALL
+      volumes:
+      - name: tmp
+        emptyDir: {}

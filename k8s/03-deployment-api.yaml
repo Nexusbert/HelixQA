@@ -4,7 +4,7 @@ metadata:
   name: helixqa-api
   namespace: helixqa
 spec:
-  replicas: 3
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -27,9 +27,9 @@ spec:
         runAsUser: 1000
         fsGroup: 1000
       containers:
-      - name: api
-        image: docker.io/neuralnexu/helixqa-api:v1.0.0
-        imagePullPolicy: IfNotPresent
+      - name: helixqa-api
+        image: helixqa-api:v1.0.0
+        imagePullPolicy: Never
         ports:
         - containerPort: 8000
           name: http
@@ -132,10 +132,10 @@ spec:
               key: refresh-token-expire-days
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "250m"
+            memory: "64Mi"
+            cpu: "100m"
           limits:
-            memory: "512Mi"
+            memory: "256Mi"
             cpu: "500m"
         livenessProbe:
           httpGet:
@@ -153,9 +153,15 @@ spec:
           periodSeconds: 5
           timeoutSeconds: 3
           failureThreshold: 2
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
             drop:
               - ALL
+      volumes:
+      - name: tmp
+        emptyDir: {}

@@ -1,8 +1,9 @@
 # Environment
 .env
+*.pem
 .env.local
 .env*.local
-
+*.tar.gz
 # Python
 __pycache__/
 *.py[cod]

@@ -4,18 +4,11 @@ metadata:
   name: helixqa-ingress
   namespace: helixqa
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/rate-limit: "100"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - helixqa.octopus.app
-    secretName: helixqa-tls
   rules:
-  - host: helixqa.octopus.app
-    http:
+  - http:
       paths:
       - path: /api
         pathType: Prefix

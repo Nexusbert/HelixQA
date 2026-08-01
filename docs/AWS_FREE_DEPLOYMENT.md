@@ -130,8 +130,6 @@ nodes:
   - containerPort: 30443
     hostPort: 443
     protocol: TCP
-- role: worker
-- role: worker
 EOF
 ```
 
@@ -147,7 +145,7 @@ This takes roughly 2–3 minutes. Verify:
 kubectl get nodes
 ```
 
-You should see three nodes (one control-plane and two workers) with status `Ready`.
+You should see one node (`control-plane`) with status `Ready`.
 
 ---
 
