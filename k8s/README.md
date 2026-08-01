@@ -11,7 +11,7 @@ All Kubernetes manifests are in `k8s/`:
 - `05-service.yaml` - ClusterIP service for API
 - `06-ingress.yaml` - Ingress with TLS (Let's Encrypt)
 
-For a step-by-step walk-through on setting up and deploying these resources on Azure AKS for free, please refer to [AZURE_FREE_DEPLOYMENT.md](file:///home/meru/Desktop/HelixQA/backend/docs/AZURE_FREE_DEPLOYMENT.md).
+For a step-by-step walk-through on deploying for free on AWS, see [AWS_FREE_DEPLOYMENT.md](../docs/AWS_FREE_DEPLOYMENT.md).
 
 ## Before You Deploy
 
